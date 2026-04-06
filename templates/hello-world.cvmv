@@ -1,0 +1,29 @@
+{
+    "camera": {
+        "zoom_level": 1.0,
+        "xview": 0.5,
+        "yview": 0.5
+    },
+    "data_entries": {
+        "HELLO_MSG": "Hello, Visual World!"
+    },
+    "blocks": [
+        { "x": 400, "y": 200, "opcode": "PUSH", "category": "Core", "has_input": true, "value": "HELLO_MSG" },
+        { "x": 400, "y": 260, "opcode": "PRINT_STR", "category": "UI", "has_input": false, "value": "" },
+        { "x": 400, "y": 320, "opcode": "HALT", "category": "System", "has_input": false, "value": "" }
+    ],
+    "comments": [
+        { 
+            "x": 600, 
+            "y": 200, 
+            "text": "1. Look at the 'Data Assets' tab!\nWe defined a string called HELLO_MSG.\n\nWe use PUSH to put the address of that string onto the stack.", 
+            "is_expanded": true 
+        },
+        { 
+            "x": 600, 
+            "y": 320, 
+            "text": "2. HALT tells the engine that the program is safely finished.", 
+            "is_expanded": true 
+        }
+    ]
+}

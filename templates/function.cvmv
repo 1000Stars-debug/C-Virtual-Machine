@@ -1,0 +1,99 @@
+{
+    "camera": {
+        "zoom_level": 1.0,
+        "xview": 0.50031,
+        "yview": 0.50011
+    },
+    "data_entries": {},
+    "blocks": [
+        {
+            "x": 200.0,
+            "y": 100.0,
+            "opcode": "PUSH",
+            "category": "Core",
+            "has_input": true,
+            "value": "5"
+        },
+        {
+            "x": 200.0,
+            "y": 200.0,
+            "opcode": "CALL",
+            "category": "Core",
+            "has_input": true,
+            "value": "DOUBLE_IT"
+        },
+        {
+            "x": 200.0,
+            "y": 320.0,
+            "opcode": "PUSH",
+            "category": "Core",
+            "has_input": true,
+            "value": "10"
+        },
+        {
+            "x": 200.0,
+            "y": 400.0,
+            "opcode": "CALL",
+            "category": "Core",
+            "has_input": true,
+            "value": "DOUBLE_IT"
+        },
+        {
+            "x": 200.0,
+            "y": 480.0,
+            "opcode": "DEBUG_PRINT",
+            "category": "UI",
+            "has_input": false,
+            "value": ""
+        },
+        {
+            "x": 200.0,
+            "y": 580.0,
+            "opcode": "HALT",
+            "category": "System",
+            "has_input": false,
+            "value": ""
+        },
+        {
+            "x": 200.0,
+            "y": 680.0,
+            "opcode": "LABEL",
+            "category": "Control",
+            "has_input": true,
+            "value": "DOUBLE_IT"
+        },
+        {
+            "x": 200.0,
+            "y": 780.0,
+            "opcode": "DUP",
+            "category": "Core",
+            "has_input": false,
+            "value": ""
+        },
+        {
+            "x": 200.0,
+            "y": 880.0,
+            "opcode": "ADD",
+            "category": "Math",
+            "has_input": false,
+            "value": ""
+        },
+        {
+            "x": 200.0,
+            "y": 1000.0,
+            "opcode": "RET",
+            "category": "Core",
+            "has_input": false,
+            "value": ""
+        },
+        {
+            "x": 200.0,
+            "y": 260.0,
+            "opcode": "DEBUG_PRINT",
+            "category": "UI",
+            "has_input": false,
+            "value": ""
+        }
+    ],
+    "comments": []
+}

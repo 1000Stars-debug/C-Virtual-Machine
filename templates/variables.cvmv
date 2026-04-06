@@ -1,0 +1,102 @@
+{
+    "camera": {
+        "zoom_level": 1.0,
+        "xview": 0.50168,
+        "yview": 0.49964
+    },
+    "data_entries": {},
+    "blocks": [
+        {
+            "x": 400.0,
+            "y": 80.0,
+            "opcode": "PUSH",
+            "category": "Core",
+            "has_input": true,
+            "value": "42"
+        },
+        {
+            "x": 400.0,
+            "y": 260.0,
+            "opcode": "PUSH",
+            "category": "Core",
+            "has_input": true,
+            "value": "8"
+        },
+        {
+            "x": 400.0,
+            "y": 320.0,
+            "opcode": "ADD",
+            "category": "Math",
+            "has_input": false,
+            "value": ""
+        },
+        {
+            "x": 400.0,
+            "y": 500.0,
+            "opcode": "DEBUG_PRINT",
+            "category": "UI",
+            "has_input": false,
+            "value": ""
+        },
+        {
+            "x": 400.0,
+            "y": 560.0,
+            "opcode": "HALT",
+            "category": "System",
+            "has_input": false,
+            "value": ""
+        },
+        {
+            "x": 400.0,
+            "y": 140.0,
+            "opcode": "STORE",
+            "category": "System",
+            "has_input": true,
+            "value": "MY_VAR"
+        },
+        {
+            "x": 400.0,
+            "y": 200.0,
+            "opcode": "LOAD",
+            "category": "System",
+            "has_input": true,
+            "value": "MY_VAR"
+        },
+        {
+            "x": 400.0,
+            "y": 380.0,
+            "opcode": "STORE",
+            "category": "System",
+            "has_input": true,
+            "value": "MY_VAR"
+        },
+        {
+            "x": 400.0,
+            "y": 440.0,
+            "opcode": "LOAD",
+            "category": "System",
+            "has_input": true,
+            "value": "MY_VAR"
+        }
+    ],
+    "comments": [
+        {
+            "x": 720.0,
+            "y": 80.0,
+            "text": "1. INITIALIZE\nPush 42 to the stack, then immediately STORE it in a variable called 'MY_VAR'.\n\n(The stack is now empty, but memory remembers 42!)",
+            "is_expanded": true
+        },
+        {
+            "x": 700.0,
+            "y": 280.0,
+            "text": "2. DO MATH\nLOAD 'MY_VAR' back onto the stack. Push 8, and ADD them together. \n\nThe stack now holds 50.",
+            "is_expanded": true
+        },
+        {
+            "x": 680.0,
+            "y": 460.0,
+            "text": "3. UPDATE & PRINT\nSTORE the new result (50) back into 'MY_VAR'. \n\nFinally, LOAD it one more time so DEBUG_PRINT can output it!",
+            "is_expanded": true
+        }
+    ]
+}

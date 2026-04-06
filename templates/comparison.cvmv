@@ -1,0 +1,150 @@
+{
+    "camera": {
+        "zoom_level": 1.0,
+        "xview": 0.50068,
+        "yview": 0.50029
+    },
+    "data_entries": {
+        "a": "A is greater !!",
+        "b": "B is greater !!"
+    },
+    "blocks": [
+        {
+            "x": 180.0,
+            "y": 120.0,
+            "opcode": "PUSH",
+            "category": "Core",
+            "has_input": true,
+            "value": "5"
+        },
+        {
+            "x": 180.0,
+            "y": 240.0,
+            "opcode": "STORE",
+            "category": "System",
+            "has_input": true,
+            "value": "A"
+        },
+        {
+            "x": 180.0,
+            "y": 380.0,
+            "opcode": "PUSH",
+            "category": "Core",
+            "has_input": true,
+            "value": "6"
+        },
+        {
+            "x": 180.0,
+            "y": 500.0,
+            "opcode": "STORE",
+            "category": "System",
+            "has_input": true,
+            "value": "B"
+        },
+        {
+            "x": 180.0,
+            "y": 620.0,
+            "opcode": "LABEL",
+            "category": "Control",
+            "has_input": true,
+            "value": "result"
+        },
+        {
+            "x": 180.0,
+            "y": 740.0,
+            "opcode": "LOAD",
+            "category": "System",
+            "has_input": true,
+            "value": "A"
+        },
+        {
+            "x": 180.0,
+            "y": 1080.0,
+            "opcode": "CMP_GT",
+            "category": "Math",
+            "has_input": false,
+            "value": ""
+        },
+        {
+            "x": 180.0,
+            "y": 880.0,
+            "opcode": "LOAD",
+            "category": "System",
+            "has_input": true,
+            "value": "B"
+        },
+        {
+            "x": 180.0,
+            "y": 1400.0,
+            "opcode": "LABEL",
+            "category": "Control",
+            "has_input": true,
+            "value": "A_gre"
+        },
+        {
+            "x": 180.0,
+            "y": 1520.0,
+            "opcode": "PUSH",
+            "category": "Core",
+            "has_input": true,
+            "value": "a"
+        },
+        {
+            "x": 180.0,
+            "y": 1660.0,
+            "opcode": "PRINT_STR",
+            "category": "UI",
+            "has_input": false,
+            "value": ""
+        },
+        {
+            "x": 180.0,
+            "y": 2180.0,
+            "opcode": "PRINT_STR",
+            "category": "UI",
+            "has_input": false,
+            "value": ""
+        },
+        {
+            "x": 180.0,
+            "y": 2040.0,
+            "opcode": "PUSH",
+            "category": "Core",
+            "has_input": true,
+            "value": "a"
+        },
+        {
+            "x": 180.0,
+            "y": 1920.0,
+            "opcode": "LABEL",
+            "category": "Control",
+            "has_input": true,
+            "value": "B_gre"
+        },
+        {
+            "x": 180.0,
+            "y": 1260.0,
+            "opcode": "JZ",
+            "category": "Control",
+            "has_input": true,
+            "value": "B_gre"
+        },
+        {
+            "x": 180.0,
+            "y": 2300.0,
+            "opcode": "HALT",
+            "category": "System",
+            "has_input": false,
+            "value": ""
+        },
+        {
+            "x": 180.0,
+            "y": 1780.0,
+            "opcode": "HALT",
+            "category": "System",
+            "has_input": false,
+            "value": ""
+        }
+    ],
+    "comments": []
+}

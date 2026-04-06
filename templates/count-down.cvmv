@@ -1,0 +1,117 @@
+{
+    "camera": {
+        "zoom_level": 1.0,
+        "xview": 0.49945,
+        "yview": 0.49903
+    },
+    "data_entries": {
+        "title": "Count Down"
+    },
+    "blocks": [
+        {
+            "x": 80.0,
+            "y": 220.0,
+            "opcode": "LABEL",
+            "category": "Control",
+            "has_input": true,
+            "value": "loop"
+        },
+        {
+            "x": 80.0,
+            "y": 100.0,
+            "opcode": "PUSH",
+            "category": "Core",
+            "has_input": true,
+            "value": "10"
+        },
+        {
+            "x": 80.0,
+            "y": 320.0,
+            "opcode": "DUP",
+            "category": "Core",
+            "has_input": false,
+            "value": ""
+        },
+        {
+            "x": 80.0,
+            "y": 420.0,
+            "opcode": "DEBUG_PRINT",
+            "category": "UI",
+            "has_input": false,
+            "value": ""
+        },
+        {
+            "x": 80.0,
+            "y": 520.0,
+            "opcode": "PUSH",
+            "category": "Core",
+            "has_input": true,
+            "value": "1"
+        },
+        {
+            "x": 80.0,
+            "y": 620.0,
+            "opcode": "SUB",
+            "category": "Math",
+            "has_input": false,
+            "value": ""
+        },
+        {
+            "x": 80.0,
+            "y": 720.0,
+            "opcode": "DUP",
+            "category": "Core",
+            "has_input": false,
+            "value": ""
+        },
+        {
+            "x": 80.0,
+            "y": 820.0,
+            "opcode": "PUSH",
+            "category": "Core",
+            "has_input": true,
+            "value": "0"
+        },
+        {
+            "x": 80.0,
+            "y": 920.0,
+            "opcode": "CMP_EQ",
+            "category": "Math",
+            "has_input": false,
+            "value": ""
+        },
+        {
+            "x": 80.0,
+            "y": 1020.0,
+            "opcode": "JZ",
+            "category": "Control",
+            "has_input": true,
+            "value": "loop"
+        },
+        {
+            "x": 80.0,
+            "y": 1120.0,
+            "opcode": "HALT",
+            "category": "System",
+            "has_input": false,
+            "value": ""
+        },
+        {
+            "x": 80.0,
+            "y": -60.0,
+            "opcode": "PUSH",
+            "category": "Core",
+            "has_input": true,
+            "value": "title"
+        },
+        {
+            "x": 80.0,
+            "y": 20.0,
+            "opcode": "PRINT_STR",
+            "category": "UI",
+            "has_input": false,
+            "value": ""
+        }
+    ],
+    "comments": []
+}

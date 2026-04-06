@@ -1,0 +1,42 @@
+{
+	"camera": {
+		"zoom_level": 0.8,
+		"xview": 0.5,
+		"yview": 0.5
+	},
+	"data_entries": {},
+	"blocks": [
+		{ "x": 400, "y": 0, "opcode": "PUSH", "category": "Core", "has_input": true, "value": "0" },
+		{ "x": 400, "y": 60, "opcode": "STORE", "category": "Variables", "has_input": true, "value": "A" },
+		{ "x": 400, "y": 120, "opcode": "PUSH", "category": "Core", "has_input": true, "value": "1" },
+		{ "x": 400, "y": 180, "opcode": "STORE", "category": "Variables", "has_input": true, "value": "B" },
+		{ "x": 400, "y": 240, "opcode": "PUSH", "category": "Core", "has_input": true, "value": "40" },
+		{ "x": 400, "y": 300, "opcode": "STORE", "category": "Variables", "has_input": true, "value": "I" },
+		{ "x": 400, "y": 360, "opcode": "LABEL", "category": "Control", "has_input": true, "value": "loop" },
+		{ "x": 400, "y": 420, "opcode": "LOAD", "category": "Variables", "has_input": true, "value": "A" },
+		{ "x": 400, "y": 480, "opcode": "DEBUG_PRINT", "category": "UI", "has_input": false, "value": "" },
+		{ "x": 400, "y": 540, "opcode": "LOAD", "category": "Variables", "has_input": true, "value": "A" },
+		{ "x": 400, "y": 600, "opcode": "LOAD", "category": "Variables", "has_input": true, "value": "B" },
+		{ "x": 400, "y": 660, "opcode": "ADD", "category": "Math", "has_input": false, "value": "" },
+		{ "x": 400, "y": 720, "opcode": "STORE", "category": "Variables", "has_input": true, "value": "NEXT" },
+		{ "x": 400, "y": 780, "opcode": "LOAD", "category": "Variables", "has_input": true, "value": "B" },
+		{ "x": 400, "y": 840, "opcode": "STORE", "category": "Variables", "has_input": true, "value": "A" },
+		{ "x": 400, "y": 900, "opcode": "LOAD", "category": "Variables", "has_input": true, "value": "NEXT" },
+		{ "x": 400, "y": 960, "opcode": "STORE", "category": "Variables", "has_input": true, "value": "B" },
+		{ "x": 400, "y": 1020, "opcode": "LOAD", "category": "Variables", "has_input": true, "value": "I" },
+		{ "x": 400, "y": 1080, "opcode": "PUSH", "category": "Core", "has_input": true, "value": "1" },
+		{ "x": 400, "y": 1140, "opcode": "SUB", "category": "Math", "has_input": false, "value": "" },
+		{ "x": 400, "y": 1200, "opcode": "DUP", "category": "Core", "has_input": false, "value": "" },
+		{ "x": 400, "y": 1260, "opcode": "STORE", "category": "Variables", "has_input": true, "value": "I" },
+		{ "x": 400, "y": 1320, "opcode": "JZ", "category": "Control", "has_input": true, "value": "end" },
+		{ "x": 400, "y": 1380, "opcode": "JMP", "category": "Control", "has_input": true, "value": "loop" },
+		{ "x": 400, "y": 1440, "opcode": "LABEL", "category": "Control", "has_input": true, "value": "end" },
+		{ "x": 400, "y": 1500, "opcode": "HALT", "category": "System", "has_input": false, "value": "" }
+	],
+	"comments": [
+		{ "x": 600, "y": 0, "text": "1. INITIALIZE\nA = 0, B = 1\nI = 40 (Counter to prevent infinite overflow)", "is_expanded": true },
+		{ "x": 600, "y": 540, "text": "2. CALCULATE\nNEXT = A + B", "is_expanded": true },
+		{ "x": 600, "y": 780, "text": "3. SHIFT\nA becomes B\nB becomes NEXT", "is_expanded": true },
+		{ "x": 600, "y": 1020, "text": "4. DECREMENT COUNTER\nSubtract 1 from I and check if we should stop.", "is_expanded": true }
+	]
+}

@@ -1,0 +1,29 @@
+{
+    "camera": {
+        "zoom_level": 1.0,
+        "xview": 0.5,
+        "yview": 0.5
+    },
+    "data_entries": {},
+    "blocks": [
+        { "x": 400, "y": 140, "opcode": "PUSH", "category": "Core", "has_input": true, "value": "10" },
+        { "x": 400, "y": 200, "opcode": "PUSH", "category": "Core", "has_input": true, "value": "5" },
+        { "x": 400, "y": 260, "opcode": "ADD", "category": "Math", "has_input": false, "value": "" },
+        { "x": 400, "y": 320, "opcode": "DEBUG_PRINT", "category": "UI", "has_input": false, "value": "" },
+        { "x": 400, "y": 380, "opcode": "HALT", "category": "System", "has_input": false, "value": "" }
+    ],
+    "comments": [
+        { 
+            "x": 600, 
+            "y": 140, 
+            "text": "THE STACK (Last-In, First-Out)\n\n1. We push 10 onto the stack.\n2. We push 5 onto the stack.\n\nThe stack now looks like this:\n[ 5 ] <-- Top\n[ 10 ]", 
+            "is_expanded": true 
+        },
+        { 
+            "x": 600, 
+            "y": 260, 
+            "text": "The ADD block pops the top two numbers (5 and 10), adds them together, and pushes the result (15) back onto the top of the stack.", 
+            "is_expanded": true 
+        }
+    ]
+}

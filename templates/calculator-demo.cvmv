@@ -1,0 +1,577 @@
+{
+    "camera": {
+        "zoom_level": 1.0,
+        "xview": 0.49623,
+        "yview": 0.51254
+    },
+    "data_entries": {
+        "title": "CVM Calculator",
+        "msg_add": "Doing Addition",
+        "msg_sub": "Doing Subtraction",
+        "msg_mul": "Doing Multiplication",
+        "msg_div": "Doing Division",
+        "msg_err": "Invalid Selection!"
+    },
+    "blocks": [
+        {
+            "x": -193.4201734706548,
+            "y": 1538.2298353811232,
+            "opcode": "PUSH",
+            "category": "Core",
+            "has_input": true,
+            "value": "title"
+        },
+        {
+            "x": -193.4201734706548,
+            "y": 1586.036560108676,
+            "opcode": "PRINT_STR",
+            "category": "UI",
+            "has_input": false,
+            "value": ""
+        },
+        {
+            "x": -193.4201734706548,
+            "y": 1633.8432848362163,
+            "opcode": "PUSH",
+            "category": "Core",
+            "has_input": true,
+            "value": "50"
+        },
+        {
+            "x": -193.4201734706548,
+            "y": 1687.3582752028776,
+            "opcode": "PUSH",
+            "category": "Core",
+            "has_input": true,
+            "value": "10"
+        },
+        {
+            "x": -194.13370667554392,
+            "y": 1738.7326659548535,
+            "opcode": "PUSH",
+            "category": "Core",
+            "has_input": true,
+            "value": "1"
+        },
+        {
+            "x": -193.4201734706548,
+            "y": 1799.3829883704161,
+            "opcode": "LABEL",
+            "category": "Control",
+            "has_input": true,
+            "value": "check_add"
+        },
+        {
+            "x": -193.4201734706548,
+            "y": 1860.0333107859644,
+            "opcode": "DUP",
+            "category": "Core",
+            "has_input": false,
+            "value": ""
+        },
+        {
+            "x": -193.4201734706548,
+            "y": 1920.6836332015137,
+            "opcode": "PUSH",
+            "category": "Core",
+            "has_input": true,
+            "value": "1"
+        },
+        {
+            "x": -193.4201734706548,
+            "y": 1980.620422412153,
+            "opcode": "CMP_EQ",
+            "category": "Math",
+            "has_input": false,
+            "value": ""
+        },
+        {
+            "x": -191.84723988043277,
+            "y": 2056.2549421303665,
+            "opcode": "JZ",
+            "category": "Control",
+            "has_input": true,
+            "value": "check_sub"
+        },
+        {
+            "x": -192.56077308532196,
+            "y": 2113.483465701926,
+            "opcode": "JMP",
+            "category": "Control",
+            "has_input": true,
+            "value": "do_add"
+        },
+        {
+            "x": -194.84723988043277,
+            "y": 2224.6487784841224,
+            "opcode": "DUP",
+            "category": "Core",
+            "has_input": false,
+            "value": ""
+        },
+        {
+            "x": -192.84723988043277,
+            "y": 2167.9984560685853,
+            "opcode": "LABEL",
+            "category": "Control",
+            "has_input": true,
+            "value": "check_sub"
+        },
+        {
+            "x": -194.84723988043277,
+            "y": 2345.235890110327,
+            "opcode": "CMP_EQ",
+            "category": "Math",
+            "has_input": false,
+            "value": ""
+        },
+        {
+            "x": -194.84723988043277,
+            "y": 2285.2991008996664,
+            "opcode": "PUSH",
+            "category": "Core",
+            "has_input": true,
+            "value": "2"
+        },
+        {
+            "x": -196.9878394950984,
+            "y": 2475.0989334000833,
+            "opcode": "JMP",
+            "category": "Control",
+            "has_input": true,
+            "value": "do_sub"
+        },
+        {
+            "x": -196.27430629021092,
+            "y": 2420.8704098285357,
+            "opcode": "JZ",
+            "category": "Control",
+            "has_input": true,
+            "value": "check_mul"
+        },
+        {
+            "x": -199.8419723146538,
+            "y": 2856.1256648106996,
+            "opcode": "JMP",
+            "category": "Control",
+            "has_input": true,
+            "value": "do_mul"
+        },
+        {
+            "x": -199.128439109765,
+            "y": 2801.8971412391456,
+            "opcode": "JZ",
+            "category": "Control",
+            "has_input": true,
+            "value": "check_div"
+        },
+        {
+            "x": -197.7013726999881,
+            "y": 2726.2626215209207,
+            "opcode": "CMP_EQ",
+            "category": "Math",
+            "has_input": false,
+            "value": ""
+        },
+        {
+            "x": -197.7013726999881,
+            "y": 2605.6755098947224,
+            "opcode": "DUP",
+            "category": "Core",
+            "has_input": false,
+            "value": ""
+        },
+        {
+            "x": -197.7013726999881,
+            "y": 2666.325832310278,
+            "opcode": "PUSH",
+            "category": "Core",
+            "has_input": true,
+            "value": "3"
+        },
+        {
+            "x": -197.7013726999881,
+            "y": 2545.0251874791797,
+            "opcode": "LABEL",
+            "category": "Control",
+            "has_input": true,
+            "value": "check_mul"
+        },
+        {
+            "x": -201.26903872443216,
+            "y": 3226.449398147952,
+            "opcode": "JMP",
+            "category": "Control",
+            "has_input": true,
+            "value": "do_div"
+        },
+        {
+            "x": -199.128439109765,
+            "y": 3036.6495656475518,
+            "opcode": "PUSH",
+            "category": "Core",
+            "has_input": true,
+            "value": "4"
+        },
+        {
+            "x": -199.128439109765,
+            "y": 2915.348920816436,
+            "opcode": "LABEL",
+            "category": "Control",
+            "has_input": true,
+            "value": "check_div"
+        },
+        {
+            "x": -199.128439109765,
+            "y": 2975.9992432320114,
+            "opcode": "DUP",
+            "category": "Core",
+            "has_input": false,
+            "value": ""
+        },
+        {
+            "x": -200.55550551954389,
+            "y": 3172.2208745764256,
+            "opcode": "JZ",
+            "category": "Control",
+            "has_input": true,
+            "value": "error_state"
+        },
+        {
+            "x": -199.128439109765,
+            "y": 3096.586354858204,
+            "opcode": "CMP_EQ",
+            "category": "Math",
+            "has_input": false,
+            "value": ""
+        },
+        {
+            "x": -200.55550551954389,
+            "y": 3291.3809197928294,
+            "opcode": "LABEL",
+            "category": "Control",
+            "has_input": true,
+            "value": "do_add"
+        },
+        {
+            "x": -200.55550551954389,
+            "y": 3351.3177090034906,
+            "opcode": "PUSH",
+            "category": "Core",
+            "has_input": true,
+            "value": "0"
+        },
+        {
+            "x": -200.55550551954389,
+            "y": 3412.681564623933,
+            "opcode": "MUL",
+            "category": "Math",
+            "has_input": false,
+            "value": ""
+        },
+        {
+            "x": -200.55550551954389,
+            "y": 3476.186019859029,
+            "opcode": "ADD",
+            "category": "Math",
+            "has_input": false,
+            "value": ""
+        },
+        {
+            "x": -200.55550551954389,
+            "y": 3546.82580714302,
+            "opcode": "PUSH",
+            "category": "Core",
+            "has_input": true,
+            "value": "msg_add"
+        },
+        {
+            "x": -199.8419723146538,
+            "y": 3608.1896627634706,
+            "opcode": "PRINT_STR",
+            "category": "UI",
+            "has_input": false,
+            "value": ""
+        },
+        {
+            "x": -200.55550551954389,
+            "y": 3672.407651203456,
+            "opcode": "ADD",
+            "category": "Math",
+            "has_input": false,
+            "value": ""
+        },
+        {
+            "x": -200.55550551954389,
+            "y": 3735.198573233658,
+            "opcode": "DEBUG_PRINT",
+            "category": "UI",
+            "has_input": false,
+            "value": ""
+        },
+        {
+            "x": -201.26903872443216,
+            "y": 3805.838360517655,
+            "opcode": "HALT",
+            "category": "System",
+            "has_input": false,
+            "value": ""
+        },
+        {
+            "x": -201.98257192932113,
+            "y": 3925.711938938953,
+            "opcode": "PUSH",
+            "category": "Core",
+            "has_input": true,
+            "value": "0"
+        },
+        {
+            "x": -201.98257192932113,
+            "y": 4121.220037078481,
+            "opcode": "PUSH",
+            "category": "Core",
+            "has_input": true,
+            "value": "msg_sub"
+        },
+        {
+            "x": -201.98257192932113,
+            "y": 4050.5802497944846,
+            "opcode": "ADD",
+            "category": "Math",
+            "has_input": false,
+            "value": ""
+        },
+        {
+            "x": -201.26903872443216,
+            "y": 4182.583892698918,
+            "opcode": "PRINT_STR",
+            "category": "UI",
+            "has_input": false,
+            "value": ""
+        },
+        {
+            "x": -201.98257192932113,
+            "y": 3987.0757945593937,
+            "opcode": "MUL",
+            "category": "Math",
+            "has_input": false,
+            "value": ""
+        },
+        {
+            "x": -201.98257192932113,
+            "y": 3865.7751497283157,
+            "opcode": "LABEL",
+            "category": "Control",
+            "has_input": true,
+            "value": "do_sub"
+        },
+        {
+            "x": -202.69610513420992,
+            "y": 4380.2325904531135,
+            "opcode": "HALT",
+            "category": "System",
+            "has_input": false,
+            "value": ""
+        },
+        {
+            "x": -201.98257192932113,
+            "y": 4309.592803169123,
+            "opcode": "DEBUG_PRINT",
+            "category": "UI",
+            "has_input": false,
+            "value": ""
+        },
+        {
+            "x": -201.98257192932113,
+            "y": 4244.661281524239,
+            "opcode": "SUB",
+            "category": "Math",
+            "has_input": false,
+            "value": ""
+        },
+        {
+            "x": -202.69610513420992,
+            "y": 4565.037690519317,
+            "opcode": "MUL",
+            "category": "Math",
+            "has_input": false,
+            "value": ""
+        },
+        {
+            "x": -201.98257192932113,
+            "y": 4760.545788658823,
+            "opcode": "PRINT_STR",
+            "category": "UI",
+            "has_input": false,
+            "value": ""
+        },
+        {
+            "x": -202.69610513420992,
+            "y": 4887.55469912901,
+            "opcode": "DEBUG_PRINT",
+            "category": "UI",
+            "has_input": false,
+            "value": ""
+        },
+        {
+            "x": -202.69610513420992,
+            "y": 4628.542145754398,
+            "opcode": "ADD",
+            "category": "Math",
+            "has_input": false,
+            "value": ""
+        },
+        {
+            "x": -202.69610513420992,
+            "y": 4699.181933038382,
+            "opcode": "PUSH",
+            "category": "Core",
+            "has_input": true,
+            "value": "msg_mul"
+        },
+        {
+            "x": -203.4096383390982,
+            "y": 4958.194486413016,
+            "opcode": "HALT",
+            "category": "System",
+            "has_input": false,
+            "value": ""
+        },
+        {
+            "x": -202.69610513420992,
+            "y": 4443.7370456882145,
+            "opcode": "LABEL",
+            "category": "Control",
+            "has_input": true,
+            "value": "do_mul"
+        },
+        {
+            "x": -202.69610513420992,
+            "y": 4503.673834898864,
+            "opcode": "PUSH",
+            "category": "Core",
+            "has_input": true,
+            "value": "0"
+        },
+        {
+            "x": -202.69610513420992,
+            "y": 4826.904376713489,
+            "opcode": "MUL",
+            "category": "Math",
+            "has_input": false,
+            "value": ""
+        },
+        {
+            "x": -202.69610513420992,
+            "y": 5079.495131244112,
+            "opcode": "PUSH",
+            "category": "Core",
+            "has_input": true,
+            "value": "0"
+        },
+        {
+            "x": -202.69610513420992,
+            "y": 5019.558342033455,
+            "opcode": "LABEL",
+            "category": "Control",
+            "has_input": true,
+            "value": "do_div"
+        },
+        {
+            "x": -203.4096383390982,
+            "y": 5534.0157827582425,
+            "opcode": "HALT",
+            "category": "System",
+            "has_input": false,
+            "value": ""
+        },
+        {
+            "x": -202.69610513420992,
+            "y": 5275.003229383623,
+            "opcode": "PUSH",
+            "category": "Core",
+            "has_input": true,
+            "value": "msg_div"
+        },
+        {
+            "x": -201.98257192932113,
+            "y": 5336.367085004065,
+            "opcode": "PRINT_STR",
+            "category": "UI",
+            "has_input": false,
+            "value": ""
+        },
+        {
+            "x": -202.69610513420992,
+            "y": 5140.858986864537,
+            "opcode": "MUL",
+            "category": "Math",
+            "has_input": false,
+            "value": ""
+        },
+        {
+            "x": -202.69610513420992,
+            "y": 5204.363442099638,
+            "opcode": "ADD",
+            "category": "Math",
+            "has_input": false,
+            "value": ""
+        },
+        {
+            "x": -202.69610513420992,
+            "y": 5463.375995474269,
+            "opcode": "DEBUG_PRINT",
+            "category": "UI",
+            "has_input": false,
+            "value": ""
+        },
+        {
+            "x": -201.98257192932113,
+            "y": 5404.152739468504,
+            "opcode": "DIV",
+            "category": "Math",
+            "has_input": false,
+            "value": ""
+        },
+        {
+            "x": -203.4096383390982,
+            "y": 5608.22323606669,
+            "opcode": "LABEL",
+            "category": "Control",
+            "has_input": true,
+            "value": "error_state"
+        },
+        {
+            "x": -204.12317154398744,
+            "y": 5665.3058924577945,
+            "opcode": "PUSH",
+            "category": "Core",
+            "has_input": true,
+            "value": "msg_err"
+        },
+        {
+            "x": -204.12317154398744,
+            "y": 5728.096814488001,
+            "opcode": "PRINT_STR",
+            "category": "UI",
+            "has_input": false,
+            "value": ""
+        },
+        {
+            "x": -203.4096383390982,
+            "y": 5788.033603698674,
+            "opcode": "HALT",
+            "category": "System",
+            "has_input": false,
+            "value": ""
+        }
+    ],
+    "comments": [
+        {
+            "x": 36.0,
+            "y": 1538.0,
+            "text": "Simple Calculator Code\n",
+            "is_expanded": true
+        }
+    ]
+}
