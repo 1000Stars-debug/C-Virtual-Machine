@@ -554,9 +554,9 @@ class VisualAssemblyEditor:
 			"Core": [("PUSH", True), ("DUP", False),("CALL", True),("RET", False)],
 			"Control Flow": [("LABEL", True), ("JMP", True), ("JZ", True)],
 			"Math & Logic": [("ADD", False), ("SUB", False), ("MUL", False), ("DIV", False), ("MOD", False), ("CMP_EQ", False),("CMP_LT", False),("CMP_GT", False),("AND", False),("OR", False),("NOT", False)],
-			"Hardware I/O": [("READ_GPIO", False), ("MODULATE", False)],
-			"UI & Debug": [("DEBUG_PRINT", False), ("CREATE_BTN", False), ("SET_TEXT", False), ("PRINT_STR", False)],
-			"System": [("HALT", False),("STORE", True),("LOAD", True),("PEEK", False), ("POKE", False)]
+			"Hardware I/O": [("GET_KEY", False),("READ_GPIO", False),],
+			"UI & Debug": [("DEBUG_PRINT", False), ("PRINT_STR", False),("CLS", False), ("DRAW_PIXEL", False), ("DRAW_RECT", False), ("FLIP", False)],
+			"System": [("HALT", False),("STORE", True),("LOAD", True),("PEEK", False), ("POKE", False),("DELAY", False)]
 		}
 		for category, ops in toolbox_data.items():
 			tk.Label(self.t_frame, text=category, bg="#333", fg="#AAA", font=("Arial", 10, "bold"), pady=5).pack(anchor="w", padx=10)
@@ -752,7 +752,7 @@ class VisualAssemblyEditor:
 		self.canvas.tag_lower("grid_line") 
 
 	def set_compile_path(self):
-		filepath = filedialog.asksaveasfilename(defaultextension=".cvms", filetypes=[("CVM Assembly", "*.cvms"), ("All Files", "*.*")], title="Set Compile Output Path")
+		filepath = filedialog.asksaveasfilename(defaultextension=".cvms", filetypes=[("CVM Assembly Source", "*.cvms"), ("All Files", "*.*")], title="Set Compile Output Path")
 		if filepath:
 			self.compile_filepath = filepath
 			messagebox.showinfo("Path Set", f"Output path set to:\n{filepath}")

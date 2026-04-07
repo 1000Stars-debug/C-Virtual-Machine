@@ -9,7 +9,7 @@ class BytecodeCompiler:
 			"PUSH": 0x01,
 			"DUP": 0x02,
 			"READ_GPIO": 0x10,
-			"MODULATE": 0x11,
+			"GET_KEY": 0x12,
 			"JMP": 0x20,
 			"JZ": 0x21,
 			"CMP_EQ": 0x30,
@@ -31,8 +31,11 @@ class BytecodeCompiler:
 			"POKE": 0x43,
 			"CALL": 0x22,
 			"RET": 0x23,
-			"CREATE_BTN": 0x40,
-			"SET_TEXT": 0x41,
+            "CLS": 0x50,
+			"DRAW_PIXEL": 0x51,
+			"DRAW_RECT": 0x52,
+			"FLIP": 0x53,
+			"DELAY": 0x54,
 			"HALT": 0xFF
 		}
 		self.reset()
