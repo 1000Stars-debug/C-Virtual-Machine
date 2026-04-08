@@ -29,6 +29,8 @@ class BytecodeCompiler:
 			"LOAD": 0x39,
 			"PEEK": 0x42,
 			"POKE": 0x43,
+			"RAND": 0x45,
+			"RAND_SEED": 0x46,
 			"CALL": 0x22,
 			"RET": 0x23,
             "CLS": 0x50,
@@ -36,6 +38,8 @@ class BytecodeCompiler:
 			"DRAW_RECT": 0x52,
 			"FLIP": 0x53,
 			"DELAY": 0x54,
+			"FS_SAVE": 0x60,
+			"FS_LOAD": 0x61,
 			"HALT": 0xFF
 		}
 		self.reset()

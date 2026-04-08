@@ -1,0 +1,43 @@
+{
+    "camera": {
+        "zoom_level": 1.0,
+        "xview": 0.50102,
+        "yview": 0.5007
+    },
+    "data_entries": {},
+    "blocks": [
+        {
+            "x": 240.0,
+            "y": 140.0,
+            "opcode": "PUSH",
+            "category": "Core",
+            "has_input": true,
+            "value": "1"
+        },
+        {
+            "x": 240.0,
+            "y": 280.0,
+            "opcode": "FS_LOAD",
+            "category": "System",
+            "has_input": false,
+            "value": ""
+        },
+        {
+            "x": 240.0,
+            "y": 560.0,
+            "opcode": "HALT",
+            "category": "System",
+            "has_input": false,
+            "value": ""
+        },
+        {
+            "x": 240.0,
+            "y": 400.0,
+            "opcode": "DEBUG_PRINT",
+            "category": "UI",
+            "has_input": false,
+            "value": ""
+        }
+    ],
+    "comments": []
+}

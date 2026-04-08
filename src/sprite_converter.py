@@ -15,7 +15,6 @@ def main(input_path, label_name):
 	width, height = img.size
 
 	print(f"// Sprite: {label_name} ({width}x{height})")
-	print(".DATA")
 	print(f"{label_name}: ", end="")
 	
 	hex_values = [hex(convert_to_rgb565(r, g, b)) for r, g, b in pixels]

@@ -1,0 +1,50 @@
+{
+    "camera": {
+        "zoom_level": 1.0,
+        "xview": 0.5,
+        "yview": 0.5
+    },
+    "data_entries": {},
+    "blocks": [
+        {
+            "x": 40.0,
+            "y": 100.0,
+            "opcode": "PUSH",
+            "category": "Core",
+            "has_input": true,
+            "value": "10"
+        },
+        {
+            "x": 320.0,
+            "y": 100.0,
+            "opcode": "RAND",
+            "category": "Math",
+            "has_input": false,
+            "value": ""
+        },
+        {
+            "x": 120.0,
+            "y": 340.0,
+            "opcode": "DEBUG_PRINT",
+            "category": "UI",
+            "has_input": false,
+            "value": ""
+        },
+        {
+            "x": 120.0,
+            "y": 460.0,
+            "opcode": "HALT",
+            "category": "System",
+            "has_input": false,
+            "value": ""
+        }
+    ],
+    "comments": [
+        {
+            "x": 560.0,
+            "y": 160.0,
+            "text": "Random number generator",
+            "is_expanded": true
+        }
+    ]
+}

@@ -553,10 +553,10 @@ class VisualAssemblyEditor:
 		toolbox_data = {
 			"Core": [("PUSH", True), ("DUP", False),("CALL", True),("RET", False)],
 			"Control Flow": [("LABEL", True), ("JMP", True), ("JZ", True)],
-			"Math & Logic": [("ADD", False), ("SUB", False), ("MUL", False), ("DIV", False), ("MOD", False), ("CMP_EQ", False),("CMP_LT", False),("CMP_GT", False),("AND", False),("OR", False),("NOT", False)],
+			"Math & Logic": [("ADD", False), ("SUB", False), ("MUL", False), ("DIV", False), ("MOD", False), ("CMP_EQ", False),("CMP_LT", False),("CMP_GT", False),("AND", False),("OR", False),("NOT", False),("RAND", False),("RAND_SEED", False)],
 			"Hardware I/O": [("GET_KEY", False),("READ_GPIO", False),],
 			"UI & Debug": [("DEBUG_PRINT", False), ("PRINT_STR", False),("CLS", False), ("DRAW_PIXEL", False), ("DRAW_RECT", False), ("FLIP", False)],
-			"System": [("HALT", False),("STORE", True),("LOAD", True),("PEEK", False), ("POKE", False),("DELAY", False)]
+			"System": [("HALT", False),("STORE", True),("LOAD", True),("PEEK", False), ("POKE", False),("DELAY", False),("FS_SAVE", False),("FS_LOAD", False)]
 		}
 		for category, ops in toolbox_data.items():
 			tk.Label(self.t_frame, text=category, bg="#333", fg="#AAA", font=("Arial", 10, "bold"), pady=5).pack(anchor="w", padx=10)
@@ -732,14 +732,54 @@ class VisualAssemblyEditor:
 			self.force_clear_workspace()
 			self.save_history_state()
 
+	def get_execution_order(self):
+		"""Sorts blocks in reading order: Top-to-Bottom, Left-to-Right."""
+		def sort_key(b):
+			coords = self.canvas.coords(b.rect_id)
+			if not coords: return (0,0)
+			# Group blocks into rows using a 20px band (matches your snap grid), then sort by X
+			return (round(coords[1] / 20) * 20, coords[0])
+		return sorted(self.blocks, key=sort_key)
+
 	def update_connections(self):
 		self.canvas.delete("connection")
 		if not self.blocks: return
-		sorted_b = sorted(self.blocks, key=lambda b: b.get_y_position())
+		
+		# Use the new reading order
+		sorted_b = self.get_execution_order()
+		
 		for i in range(len(sorted_b) - 1):
 			b1, b2 = sorted_b[i], sorted_b[i+1]
 			c1, c2 = self.canvas.coords(b1.rect_id), self.canvas.coords(b2.rect_id)
-			self.canvas.create_line((c1[0]+c1[2])/2, c1[3], (c2[0]+c2[2])/2, c2[1], arrow=tk.LAST, fill="#666", width=2, tags="connection")
+			if not c1 or not c2: continue
+
+			# Calculate center points of both blocks
+			cx1, cy1 = (c1[0] + c1[2]) / 2, (c1[1] + c1[3]) / 2
+			cx2, cy2 = (c2[0] + c2[2]) / 2, (c2[1] + c2[3]) / 2
+			
+			# Determine distance in X and Y to find the primary direction
+			dx = cx2 - cx1
+			dy = cy2 - cy1
+			
+			# Dynamic Anchor Points based on direction
+			if abs(dx) > abs(dy): # Horizontal connection (Sideways)
+				if dx > 0: # b2 is to the Right
+					sx, sy = c1[2], cy1  # b1 Right edge
+					ex, ey = c2[0], cy2  # b2 Left edge
+				else: # b2 is to the Left
+					sx, sy = c1[0], cy1  # b1 Left edge
+					ex, ey = c2[2], cy2  # b2 Right edge
+			else: # Vertical connection (Up/Down)
+				if dy > 0: # b2 is Below
+					sx, sy = cx1, c1[3]  # b1 Bottom edge
+					ex, ey = cx2, c2[1]  # b2 Top edge
+				else: # b2 is Above
+					sx, sy = cx1, c1[1]  # b1 Top edge
+					ex, ey = cx2, c2[3]  # b2 Bottom edge
+
+			self.canvas.create_line(sx, sy, ex, ey, arrow=tk.LAST, fill="#666", width=2, tags="connection")
+			
+		# Draw JMP/JZ loop lines
 		labels = {b.entry.get(): b for b in self.blocks if b.opcode == "LABEL" and b.has_input}
 		for b in self.blocks:
 			if b.opcode in ["JMP", "JZ"] and b.has_input:
@@ -748,8 +788,9 @@ class VisualAssemblyEditor:
 					c1, c2 = self.canvas.coords(b.rect_id), self.canvas.coords(target.rect_id)
 					px = max(c1[2], c2[2]) + 60
 					self.canvas.create_line(c1[2], (c1[1]+c1[3])/2, px, (c1[1]+c1[3])/2, px, (c2[1]+c2[3])/2, c2[2], (c2[1]+c2[3])/2, arrow=tk.LAST, fill="#FFB74D", width=2, dash=(5, 5), tags="connection")
+					
 		self.canvas.tag_lower("connection")
-		self.canvas.tag_lower("grid_line") 
+		self.canvas.tag_lower("grid_line")
 
 	def set_compile_path(self):
 		filepath = filedialog.asksaveasfilename(defaultextension=".cvms", filetypes=[("CVM Assembly Source", "*.cvms"), ("All Files", "*.*")], title="Set Compile Output Path")
@@ -767,13 +808,18 @@ class VisualAssemblyEditor:
 				out_path = filedialog.asksaveasfilename(defaultextension=".cvms", filetypes=[("CVM Assembly Source", "*.cvms"), ("All Files", "*.*")], title="Compile Project As")
 				if not out_path: return
 				self.compile_filepath = out_path
+				
 		data_code = ".DATA\n"
 		for lbl, val in self.data_entries.items():
 			data_code += f"{lbl}: \"{val}\"\n"
-		sorted_b = sorted(self.blocks, key=lambda b: b.get_y_position())
+			
+		# Ensure the compiler uses the exact same Reading Order as the visual arrows
+		sorted_b = self.get_execution_order()
+		
 		code_section = ".CODE\n"
 		for b in sorted_b:
 			code_section += b.get_code() + "\n"
+			
 		full_output = data_code + "\n" + code_section
 		compiled_filename = os.path.basename(out_path)
 		try:

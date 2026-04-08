@@ -7,6 +7,9 @@
 #include <algorithm>
 #include <thread>
 #include <chrono>
+#include <ctime>
+#include <fstream>
+#include <string>
 
 namespace Opcode {
 	constexpr uint8_t PUSH        = 0x01;
@@ -34,11 +37,15 @@ namespace Opcode {
 	constexpr uint8_t CMP_GT      = 0x3E; 
 	constexpr uint8_t PEEK        = 0x42;
 	constexpr uint8_t POKE        = 0x43;
+	constexpr uint8_t RAND 	      = 0x45;
+	constexpr uint8_t RAND_SEED   = 0x46;
 	constexpr uint8_t CLS         = 0x50; 
 	constexpr uint8_t DRAW_PIXEL  = 0x51; 
 	constexpr uint8_t DRAW_RECT   = 0x52;
 	constexpr uint8_t FLIP        = 0x53; 
 	constexpr uint8_t DELAY       = 0x54;
+	constexpr uint8_t FS_SAVE     = 0x60;
+	constexpr uint8_t FS_LOAD     = 0x61;
 	constexpr uint8_t HALT        = 0xFF;
 }
 
@@ -111,11 +118,15 @@ public:
 			uint8_t opcode = memory[pc++]; 
 
 			switch (opcode) {
+				//---STACK OPERATIONS---
 				case Opcode::PUSH:  push(fetch_16bit()); break;
 				case Opcode::DUP:   { int val = pop(); push(val); push(val); break; }
+				//---STORE & LOAD---
 				case Opcode::STORE: variables[fetch_16bit() % 256] = pop(); break;
 				case Opcode::LOAD:  push(variables[fetch_16bit() % 256]); break;
-				
+				case Opcode::PEEK:  { int addr = pop(); push((addr >= 0 && addr < 2048) ? ram[addr] : 0); break; }
+				case Opcode::POKE:  { int val = pop(); int addr = pop(); if(addr >= 0 && addr < 2048) ram[addr] = val; break; }
+				//---FUNCTION---
 				case Opcode::CALL: {
 					uint16_t target = fetch_16bit();
 					if (csp < 64) { call_stack[csp++] = pc; pc = target; }
@@ -123,14 +134,17 @@ public:
 					break;
 				}
 				case Opcode::RET:   if (csp > 0) pc = call_stack[--csp]; else is_running = false; break;
+				//---JUMP STATEMENTS---
 				case Opcode::JMP:   pc = fetch_16bit(); break;
 				case Opcode::JZ:    { uint16_t target = fetch_16bit(); if (pop() == 0) pc = target; break; }
-
+				//---MATH & LOGICAL OPERATIONS---
 				case Opcode::ADD:   { int b = pop(); int a = pop(); push(a + b); break; }
 				case Opcode::SUB:   { int b = pop(); int a = pop(); push(a - b); break; }
 				case Opcode::MUL:   { int b = pop(); int a = pop(); push(a * b); break; }
 				case Opcode::DIV:   { int b = pop(); int a = pop(); push(b == 0 ? 0 : a / b); break; }
 				case Opcode::MOD:   { int b = pop(); int a = pop(); push(b == 0 ? 0 : a % b); break; }
+				case Opcode::RAND: {int max = pop();if (max <=0) push(0);else push(rand() % max);break;}
+				case Opcode::RAND_SEED: {int seed = pop();srand(seed);break;}
 
 				case Opcode::CMP_EQ:{ int b = pop(); int a = pop(); push((a == b) ? 1 : 0); break; }
 				case Opcode::CMP_LT:{ int b = pop(); int a = pop(); push((a < b) ? 1 : 0); break; }
@@ -138,10 +152,7 @@ public:
 				case Opcode::AND:   { int b = pop(); int a = pop(); push((a && b) ? 1 : 0); break; }
 				case Opcode::OR:    { int b = pop(); int a = pop(); push((a || b) ? 1 : 0); break; }
 				case Opcode::NOT:   { int a = pop(); push((a == 0) ? 1 : 0); break; }
-
-				case Opcode::PEEK:  { int addr = pop(); push((addr >= 0 && addr < 2048) ? ram[addr] : 0); break; }
-				case Opcode::POKE:  { int val = pop(); int addr = pop(); if(addr >= 0 && addr < 2048) ram[addr] = val; break; }
-
+				//---OUTPUT & DEBUG---
 				case Opcode::DEBUG_PRINT: if (!is_running) break; std::cout << "[DEBUG] " << pop() << "\n"; break;
 				case Opcode::PRINT_STR: {
 					int addr = pop();
@@ -150,7 +161,42 @@ public:
 					break;
 				}
 
-				// --- HARDWARE & TIMING (NATIVE) ---
+				//---FILE SYSTEM (SAVE & LOAD)--- [NEED TO CHANGE WHEN PORTING]
+				case Opcode::FS_SAVE: {
+					int slot = pop();
+					int value = pop();
+					
+					std::string filename = "save_slot_" + std::to_string(slot) + ".dat";
+					std::ofstream file(filename, std::ios::binary);
+					if (file.is_open()) {
+						file.write(reinterpret_cast<char*>(&value), sizeof(int));
+						file.close();
+						std::cout << "[FILESYSTEM] Saved " << filename << "\n";
+					} else {
+						std::cerr << "[FILESYSTEM ERROR] Could not write to disk!\n";
+					}
+					break;
+
+				}
+				case Opcode::FS_LOAD:{
+					int slot = pop();
+					int value = 0;
+					
+					std::string filename = "save_slot_" + std::to_string(slot) + ".dat";
+					std::ifstream file(filename, std::ios::binary);
+					if (file.is_open()) {
+						file.read(reinterpret_cast<char*>(&value), sizeof(int));
+						file.close();
+						std::cout << "[FILESYSTEM] Loaded " << filename << "\n";
+					} else {
+						std::cout << "[FILESYSTEM ERROR] Save file not found\n";
+					}
+					
+					push(value);
+					break;
+				}
+
+				// --- HARDWARE & TIMING (NATIVE) --- [NEED TO CHANGE WHEN PORTING]
 				case Opcode::DELAY: {
 					int ms = pop();
 					if (is_running) std::this_thread::sleep_for(std::chrono::milliseconds(ms));
@@ -159,12 +205,12 @@ public:
 				case Opcode::GET_KEY: push(0); break;
 				case Opcode::READ_GPIO: {int pin = pop();push(0);break;}
 
-				// --- GRAPHICS STUBS---
+				// --- GRAPHICS STUBS--- [NEED TO CHANGE WHEN PORTING]
 				case Opcode::CLS:        pop(); break; 
 				case Opcode::DRAW_PIXEL: pop(); pop(); pop(); break; 
 				case Opcode::DRAW_RECT:  pop(); pop(); pop(); pop(); pop(); break; 
 				case Opcode::FLIP:       break;
-
+				//---HALT---
 				case Opcode::HALT: is_running = false;std :: cout<<"[SYSTEM] Virtual Machine HALTS\n";  break;
 				default: is_running = false;std::cerr << "[ERROR] Invalid Opcode: 0x" << std::hex << (int)opcode << "\n"; break;
 			}
@@ -174,6 +220,7 @@ public:
 
 int main() {
 	VirtualMachine vm;
+	srand(time(NULL));
 	if (vm.load_cartridge("main.cvm")) {
 		vm.run();
 	}
