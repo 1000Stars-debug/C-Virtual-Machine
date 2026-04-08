@@ -3,7 +3,7 @@ Stack Based bytecode VM For ESP32-S3
 **[CURRENTLY IMPLEMENTING]**
 
 
-TODO:
-  Implement DRAWING
-  Implement GET_INPUT
+TODO:\n
+  Implement DRAWING\n
+  Implement GET_INPUT\n
   .....
