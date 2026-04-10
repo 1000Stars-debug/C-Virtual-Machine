@@ -143,8 +143,13 @@ class BytecodeCompiler:
 			print(f"[INFO] Variable Map: {self.variables}")
 
 if __name__ == "__main__":
-	if len(sys.argv) == 2:
+	if len(sys.argv) == 3:
 		source_file = sys.argv[1]
-		BytecodeCompiler().compile_file(str(source_file), "main.cvm")
+		exec_name = None
+		if sys.argv[2] == None:
+		    exec_name = "main.cvm"
+		else:
+		    exec_name = str(sys.argv[2])
+		BytecodeCompiler().compile_file(str(source_file), exec_name)
 	else:
-		print("[ERROR] Missing arguments. Usage: python compiler.py <source.cvms>")
+		print("[ERROR] Missing arguments. Usage: python compiler.py <source.cvms> <name.cvm>")
