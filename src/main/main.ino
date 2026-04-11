@@ -2,18 +2,29 @@
 
 #define SD_CS 5
 
+LGFX_Custom lcd;
+LGFX_Sprite sprite(&lcd);
+
 
 void init_sd_card() {
+  SPI.end(); 
+  delay(100);
+
   SPI.begin(10, 4, 11, SD_CS);
-  delay(50); 
-  if (!SD.begin(SD_CS, SPI, 4000000)) {
-    Serial.println("[ERROR] SD Card Mount Failed!");
-    while (true) {
-      delay(100); 
-    }
-  }
+  delay(100); 
   
-  Serial.println("[SYSTEM] SD Card Initialized.");
+  Serial.println("[SYSTEM] Attempting SD Mount at 1MHz...");
+  if (!SD.begin(SD_CS, SPI, 1000000)) { 
+    Serial.println("[ERROR] SD Card Mount Failed!");
+    
+    if(!SD.begin(SD_CS, SPI, 400000)) {
+       Serial.println("[CRITICAL] Hardware connection issue or incompatible card.");
+    } else {
+       Serial.println("[SYSTEM] SD Card Initialized at 400KHz (Slow Mode).");
+    }
+  } else {
+    Serial.println("[SYSTEM] SD Card Initialized.");
+  }
 }
 
 void list_files() {
@@ -56,12 +67,13 @@ String select_files() {
 
 VirtualMachine vm;
 
+
 void setup() {
   Serial.begin(115200);
   delay(2000);
   Serial.println("[BOOTING] Operating System");
   Serial.println("[BOOTING] Initializing SD Card");
-  
+  init_display();
   init_sd_card();
   list_files();
   srand(esp_random());
@@ -78,6 +90,10 @@ void setup() {
     }
 		if (fileToLoad == "ls"){
 			list_files();
+			continue;
+		}
+    if (fileToLoad == "restart"){
+			ESP.restart();
 			continue;
 		}
     

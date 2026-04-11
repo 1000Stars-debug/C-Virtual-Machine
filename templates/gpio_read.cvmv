@@ -1,8 +1,8 @@
 {
     "camera": {
         "zoom_level": 1.0,
-        "xview": 0.50034,
-        "yview": 0.50042
+        "xview": 0.50073,
+        "yview": 0.4983
     },
     "data_entries": {
         "press": "Button Pressed",
@@ -146,5 +146,12 @@
             "value": "main"
         }
     ],
-    "comments": []
+    "comments": [
+        {
+            "x": 440.0,
+            "y": 160.0,
+            "text": "This is a button pressed and release example\nPls change the Pin calue if neccesary",
+            "is_expanded": true
+        }
+    ]
 }

@@ -1,0 +1,173 @@
+{
+    "camera": {
+        "zoom_level": 1.0,
+        "xview": 0.50128,
+        "yview": 0.50465
+    },
+    "data_entries": {
+        "label": "Hello CVM"
+    },
+    "blocks": [
+        {
+            "x": 360.0,
+            "y": 180.0,
+            "opcode": "PUSH",
+            "category": "Core",
+            "has_input": true,
+            "value": "65535"
+        },
+        {
+            "x": 360.0,
+            "y": 260.0,
+            "opcode": "CLS",
+            "category": "UI",
+            "has_input": false,
+            "value": ""
+        },
+        {
+            "x": 240.0,
+            "y": 380.0,
+            "opcode": "PUSH",
+            "category": "Core",
+            "has_input": true,
+            "value": "label"
+        },
+        {
+            "x": 240.0,
+            "y": 480.0,
+            "opcode": "PUSH",
+            "category": "Core",
+            "has_input": true,
+            "value": "55"
+        },
+        {
+            "x": 240.0,
+            "y": 600.0,
+            "opcode": "PUSH",
+            "category": "Core",
+            "has_input": true,
+            "value": "83"
+        },
+        {
+            "x": 240.0,
+            "y": 740.0,
+            "opcode": "PUSH",
+            "category": "Core",
+            "has_input": true,
+            "value": "0"
+        },
+        {
+            "x": 240.0,
+            "y": 860.0,
+            "opcode": "DRAW_TEXT",
+            "category": "UI",
+            "has_input": false,
+            "value": ""
+        },
+        {
+            "x": 320.0,
+            "y": 2040.0,
+            "opcode": "FLIP",
+            "category": "UI",
+            "has_input": false,
+            "value": ""
+        },
+        {
+            "x": 320.0,
+            "y": 1320.0,
+            "opcode": "PUSH",
+            "category": "Core",
+            "has_input": true,
+            "value": "0"
+        },
+        {
+            "x": 320.0,
+            "y": 1060.0,
+            "opcode": "PUSH",
+            "category": "Core",
+            "has_input": true,
+            "value": "60"
+        },
+        {
+            "x": 320.0,
+            "y": 1200.0,
+            "opcode": "PUSH",
+            "category": "Core",
+            "has_input": true,
+            "value": "92"
+        },
+        {
+            "x": 320.0,
+            "y": 960.0,
+            "opcode": "PUSH",
+            "category": "Core",
+            "has_input": true,
+            "value": "100"
+        },
+        {
+            "x": 320.0,
+            "y": 1420.0,
+            "opcode": "DRAW_NUM",
+            "category": "UI",
+            "has_input": false,
+            "value": ""
+        },
+        {
+            "x": 580.0,
+            "y": 1440.0,
+            "opcode": "PUSH",
+            "category": "Core",
+            "has_input": true,
+            "value": "55"
+        },
+        {
+            "x": 580.0,
+            "y": 1580.0,
+            "opcode": "PUSH",
+            "category": "Core",
+            "has_input": true,
+            "value": "63"
+        },
+        {
+            "x": 580.0,
+            "y": 1700.0,
+            "opcode": "PUSH",
+            "category": "Core",
+            "has_input": true,
+            "value": "15"
+        },
+        {
+            "x": 580.0,
+            "y": 1800.0,
+            "opcode": "PUSH",
+            "category": "Core",
+            "has_input": true,
+            "value": "15"
+        },
+        {
+            "x": 580.0,
+            "y": 1980.0,
+            "opcode": "DRAW_RECT",
+            "category": "UI",
+            "has_input": false,
+            "value": ""
+        },
+        {
+            "x": 580.0,
+            "y": 1880.0,
+            "opcode": "PUSH",
+            "category": "Core",
+            "has_input": true,
+            "value": "2016"
+        },
+        {
+            "x": 320.0,
+            "y": 2200.0,
+            "opcode": "HALT",
+            "category": "System",
+            "has_input": false,
+            "value": ""
+        }
+    ],
+    "comments": []
+}

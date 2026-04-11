@@ -1,8 +1,8 @@
 {
     "camera": {
         "zoom_level": 1.0,
-        "xview": 0.49949,
-        "yview": 0.50567
+        "xview": 0.50005,
+        "yview": 0.49966
     },
     "data_entries": {
         "title": "Starting Vibration",
@@ -114,5 +114,12 @@
             "value": ""
         }
     ],
-    "comments": []
+    "comments": [
+        {
+            "x": 340.0,
+            "y": 200.0,
+            "text": "Pls connect a led or a viration module input in Pin 7",
+            "is_expanded": true
+        }
+    ]
 }

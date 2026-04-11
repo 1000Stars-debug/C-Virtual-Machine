@@ -10,10 +10,6 @@ Description:Bytecode Interpreted virtual machine
 Author:created by Sreeranj@2026
 Links:https://github.com/1000Stars-debug/C-Virtual-Machine
 
-TODO:
---Need to implement DRAW
---Need to implement INPUT
-
 */
 
 #include <vector>
@@ -23,6 +19,8 @@ TODO:
 #include <ctime>
 #include <SPI.h>
 #include <SD.h>
+#include "display.h"
+
 
 
 
@@ -31,7 +29,6 @@ namespace Opcode {
 	constexpr uint8_t DUP         = 0x02;
 	constexpr uint8_t READ_GPIO   = 0x10;
 	constexpr uint8_t WRITE_GPIO  = 0x11;
-	constexpr uint8_t GET_KEY     = 0x12;
 	constexpr uint8_t JMP         = 0x20;
 	constexpr uint8_t JZ          = 0x21;
 	constexpr uint8_t CALL        = 0x22;
@@ -58,6 +55,8 @@ namespace Opcode {
 	constexpr uint8_t CLS         = 0x50; 
 	constexpr uint8_t DRAW_PIXEL  = 0x51; 
 	constexpr uint8_t DRAW_RECT   = 0x52;
+	constexpr uint8_t DRAW_TEXT   = 0x55;
+	constexpr uint8_t DRAW_NUM   	= 0x56;
 	constexpr uint8_t FLIP        = 0x53; 
 	constexpr uint8_t DELAY       = 0x54;
 	constexpr uint8_t FS_SAVE     = 0x60;
@@ -217,19 +216,15 @@ public:
 					int value = 0;
 
 					std::string filename = "/save_slot_" + std::to_string(slot) + ".dat";
-
 					File file = SD.open(filename.c_str());
 					
 					if (file) {
-						
 						file.read(reinterpret_cast<uint8_t*>(&value), sizeof(int));
 						file.close(); 
 						Serial.printf("[FILESYSTEM] Loaded %s\n", filename.c_str());
 					} else {
 						Serial.println("[FILESYSTEM ERROR] Save file not found.");
 					}
-					
-					
 					push(value);
 					break;
 				}
@@ -240,15 +235,64 @@ public:
 					delay(ms);
 					break;
 				}
-				case Opcode::GET_KEY: push(0); break;
 				case Opcode::READ_GPIO: {int pin = pop();int val = analogRead(pin);push(val);break;}
 				case Opcode::WRITE_GPIO: {int value = pop();int pin = pop();analogWrite(pin,value);break;}
 
-				// --- GRAPHICS STUBS--- [NEED TO CHANGE WHEN PORTING]
-				case Opcode::CLS:        pop(); break; 
-				case Opcode::DRAW_PIXEL: pop(); pop(); pop(); break; 
-				case Opcode::DRAW_RECT:  pop(); pop(); pop(); pop(); pop(); break; 
-				case Opcode::FLIP:       break;
+				// --- GRAPHICS & FRAMEBUFFER---
+				case Opcode::CLS: {
+          int color = pop();
+          sprite.fillScreen(color);
+          break; 
+        }
+        case Opcode::DRAW_PIXEL: {
+          int color = pop(); int y = pop(); int x = pop();
+          sprite.drawPixel(x, y, color);
+          break; 
+        }
+        case Opcode::DRAW_RECT: {
+          int color = pop(); int h = pop(); int w = pop(); int y = pop(); int x = pop();
+          sprite.fillRect(x, y, w, h, color);
+          break; 
+        }
+        case Opcode::DRAW_TEXT: {
+          int color = pop(); 
+          int y = pop(); 
+          int x = pop();
+          int addr = pop();
+          
+          if (!is_running) break;
+
+          String text = "";
+          while (addr >= 0 && addr < memory.size() && memory[addr] != 0x00) {
+            text += (char)memory[addr];
+            addr++;
+          }
+
+          sprite.setTextColor(color);
+          sprite.setCursor(x, y);
+          sprite.print(text);
+          break;
+        }
+				case Opcode::DRAW_NUM: {
+					int color = pop();
+					int y     = pop();
+					int x     = pop();
+					int value = pop();
+
+					if (!is_running) break;
+
+					sprite.setTextColor(color);
+					sprite.setCursor(x, y);
+					sprite.print(value);
+					break;
+				}
+        case Opcode::FLIP: {
+					instructions_executed = 0;
+					lcd.startWrite();
+          sprite.pushSprite(0, 0);
+					lcd.endWrite();
+          break;
+        }
 				//---HALT---
 				case Opcode::HALT: is_running = false;Serial.println("[SYSTEM] Virtual Machine HALTS");  break;
 				default: is_running = false;Serial.printf("[ERROR] Invalid Opcode: 0x%02X\n", opcode); break;
