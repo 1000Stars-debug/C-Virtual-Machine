@@ -30,6 +30,7 @@ namespace Opcode {
 	constexpr uint8_t PUSH        = 0x01;
 	constexpr uint8_t DUP         = 0x02;
 	constexpr uint8_t READ_GPIO   = 0x10;
+	constexpr uint8_t WRITE_GPIO  = 0x11;
 	constexpr uint8_t GET_KEY     = 0x12;
 	constexpr uint8_t JMP         = 0x20;
 	constexpr uint8_t JZ          = 0x21;
@@ -236,11 +237,12 @@ public:
 				// --- HARDWARE & TIMING (NATIVE) ---
 				case Opcode::DELAY: {
 					int ms = pop();
-					if (is_running) delay(ms);
+					delay(ms);
 					break;
 				}
 				case Opcode::GET_KEY: push(0); break;
-				case Opcode::READ_GPIO: {int pin = pop();push(0);break;}
+				case Opcode::READ_GPIO: {int pin = pop();int val = analogRead(pin);push(val);break;}
+				case Opcode::WRITE_GPIO: {int value = pop();int pin = pop();analogWrite(pin,value);break;}
 
 				// --- GRAPHICS STUBS--- [NEED TO CHANGE WHEN PORTING]
 				case Opcode::CLS:        pop(); break; 

@@ -9,6 +9,7 @@ class BytecodeCompiler:
 			"PUSH": 0x01,
 			"DUP": 0x02,
 			"READ_GPIO": 0x10,
+			"WRITE_GPIO": 0x11,
 			"GET_KEY": 0x12,
 			"JMP": 0x20,
 			"JZ": 0x21,
