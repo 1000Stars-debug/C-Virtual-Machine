@@ -55,6 +55,7 @@ namespace Opcode {
 	constexpr uint8_t CLS         = 0x50; 
 	constexpr uint8_t DRAW_PIXEL  = 0x51; 
 	constexpr uint8_t DRAW_RECT   = 0x52;
+	constexpr uint8_t DRAW_BMP    = 0x58;
 	constexpr uint8_t DRAW_TEXT   = 0x55;
 	constexpr uint8_t DRAW_NUM   	= 0x56;
 	constexpr uint8_t FLIP        = 0x53; 
@@ -88,9 +89,9 @@ private:
 		else { Serial.println("[CRITICAL] Stack Underflow"); is_running = false; return 0; }
 	}
 
-	inline uint16_t fetch_16bit() {
+	inline int16_t fetch_16bit() {
 		if (pc + 1 >= memory.size()) return 0;
-		uint16_t value = memory[pc] | (memory[pc + 1] << 8);
+		int16_t value = memory[pc] | (memory[pc + 1] << 8);
 		pc += 2;
 		return value;
 	}
@@ -253,6 +254,25 @@ public:
           int color = pop(); int h = pop(); int w = pop(); int y = pop(); int x = pop();
           sprite.fillRect(x, y, w, h, color);
           break; 
+        }
+				case Opcode::DRAW_BMP: {
+          int y = pop();
+          int x = pop();
+          int addr = pop();
+
+          if (!is_running) break;
+
+          // 1. Extract the filename string from VM memory
+          String filename = "/"; // SD library expects root slash
+          while (addr >= 0 && addr < memory.size() && memory[addr] != 0x00) {
+            filename += (char)memory[addr];
+            addr++;
+          }
+
+          // 2. Tell LovyanGFX to draw the BMP from the SD Card
+          // Note: 'sprite' is your LovyanGFX buffer, 'SD' is your file system
+          sprite.drawBmpFile(SD, filename.c_str(), x, y);
+          break;
         }
         case Opcode::DRAW_TEXT: {
           int color = pop(); 
