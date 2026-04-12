@@ -554,8 +554,8 @@ class VisualAssemblyEditor:
 			"Core": [("PUSH", True), ("DUP", False),("CALL", True),("RET", False)],
 			"Control Flow": [("LABEL", True), ("JMP", True), ("JZ", True)],
 			"Math & Logic": [("ADD", False), ("SUB", False), ("MUL", False), ("DIV", False), ("MOD", False), ("CMP_EQ", False),("CMP_LT", False),("CMP_GT", False),("AND", False),("OR", False),("NOT", False),("RAND", False),("RAND_SEED", False)],
-			"Hardware I/O": [("GET_KEY", False),("READ_GPIO", False),],
-			"UI & Debug": [("DEBUG_PRINT", False), ("PRINT_STR", False),("CLS", False), ("DRAW_PIXEL", False), ("DRAW_RECT", False), ("FLIP", False)],
+			"Hardware I/O": [("READ_GPIO", False),("WRITE_GPIO", False)],
+			"UI & Debug": [("DEBUG_PRINT", False), ("PRINT_STR", False),("CLS", False), ("DRAW_PIXEL", False),("DRAW_BMP", False),("DRAW_TEXT", False),("DRAW_NUM", False), ("DRAW_RECT", False), ("FLIP", False)],
 			"System": [("HALT", False),("STORE", True),("LOAD", True),("PEEK", False), ("POKE", False),("DELAY", False),("FS_SAVE", False),("FS_LOAD", False)]
 		}
 		for category, ops in toolbox_data.items():

@@ -1,0 +1,125 @@
+{
+    "camera": {
+        "zoom_level": 1.0,
+        "xview": 0.50005,
+        "yview": 0.49966
+    },
+    "data_entries": {
+        "title": "Starting Vibration",
+        "stop": "Stopping Vibration"
+    },
+    "blocks": [
+        {
+            "x": 120.0,
+            "y": 260.0,
+            "opcode": "PUSH",
+            "category": "Core",
+            "has_input": true,
+            "value": "7"
+        },
+        {
+            "x": 120.0,
+            "y": 80.0,
+            "opcode": "PUSH",
+            "category": "Core",
+            "has_input": true,
+            "value": "title"
+        },
+        {
+            "x": 120.0,
+            "y": 160.0,
+            "opcode": "PRINT_STR",
+            "category": "UI",
+            "has_input": false,
+            "value": ""
+        },
+        {
+            "x": 120.0,
+            "y": 380.0,
+            "opcode": "PUSH",
+            "category": "Core",
+            "has_input": true,
+            "value": "180"
+        },
+        {
+            "x": 120.0,
+            "y": 480.0,
+            "opcode": "WRITE_GPIO",
+            "category": "Hardware",
+            "has_input": false,
+            "value": ""
+        },
+        {
+            "x": 120.0,
+            "y": 600.0,
+            "opcode": "PUSH",
+            "category": "Core",
+            "has_input": true,
+            "value": "9000"
+        },
+        {
+            "x": 120.0,
+            "y": 960.0,
+            "opcode": "PUSH",
+            "category": "Core",
+            "has_input": true,
+            "value": "7"
+        },
+        {
+            "x": 120.0,
+            "y": 1080.0,
+            "opcode": "PUSH",
+            "category": "Core",
+            "has_input": true,
+            "value": "0"
+        },
+        {
+            "x": 120.0,
+            "y": 1300.0,
+            "opcode": "HALT",
+            "category": "System",
+            "has_input": false,
+            "value": ""
+        },
+        {
+            "x": 120.0,
+            "y": 720.0,
+            "opcode": "DELAY",
+            "category": "System",
+            "has_input": false,
+            "value": ""
+        },
+        {
+            "x": 120.0,
+            "y": 800.0,
+            "opcode": "PUSH",
+            "category": "Core",
+            "has_input": true,
+            "value": "stop"
+        },
+        {
+            "x": 120.0,
+            "y": 880.0,
+            "opcode": "PRINT_STR",
+            "category": "UI",
+            "has_input": false,
+            "value": ""
+        },
+        {
+            "x": 120.0,
+            "y": 1200.0,
+            "opcode": "WRITE_GPIO",
+            "category": "Hardware",
+            "has_input": false,
+            "value": ""
+        }
+    ],
+    "comments": [
+        {
+            "x": 340.0,
+            "y": 200.0,
+            "text": "Pls connect a led or a viration module input in Pin 7",
+            "is_expanded": true
+        }
+    ]
+}
