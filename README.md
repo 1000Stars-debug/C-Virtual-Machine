@@ -1,3 +1,3 @@
 **C Virtual Machine**
-Stack Based bytecode VM For ESP32-S3
+Stack Based bytecode VM
 **[CURRENTLY IMPLEMENTING]**
