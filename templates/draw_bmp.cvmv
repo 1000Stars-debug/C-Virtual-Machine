@@ -1,0 +1,68 @@
+{
+    "camera": {
+        "zoom_level": 1.0,
+        "xview": 0.50141,
+        "yview": 0.50065
+    },
+    "data_entries": {
+        "bg": "background.bmp"
+    },
+    "blocks": [
+        {
+            "x": 320.0,
+            "y": 260.0,
+            "opcode": "PUSH",
+            "category": "Core",
+            "has_input": true,
+            "value": "bg"
+        },
+        {
+            "x": 320.0,
+            "y": 380.0,
+            "opcode": "PUSH",
+            "category": "Core",
+            "has_input": true,
+            "value": "0"
+        },
+        {
+            "x": 320.0,
+            "y": 500.0,
+            "opcode": "PUSH",
+            "category": "Core",
+            "has_input": true,
+            "value": "0"
+        },
+        {
+            "x": 320.0,
+            "y": 640.0,
+            "opcode": "DRAW_BMP",
+            "category": "UI",
+            "has_input": false,
+            "value": ""
+        },
+        {
+            "x": 320.0,
+            "y": 840.0,
+            "opcode": "HALT",
+            "category": "System",
+            "has_input": false,
+            "value": ""
+        },
+        {
+            "x": 320.0,
+            "y": 760.0,
+            "opcode": "FLIP",
+            "category": "UI",
+            "has_input": false,
+            "value": ""
+        }
+    ],
+    "comments": [
+        {
+            "x": 640.0,
+            "y": 280.0,
+            "text": "pls put background.bmp (128x160) file in the root of the sdcard",
+            "is_expanded": true
+        }
+    ]
+}

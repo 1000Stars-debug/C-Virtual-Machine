@@ -618,13 +618,17 @@ class VisualAssemblyEditor:
         t_scroll.pack(side="right", fill="y")
         t_canvas.pack(side="left", fill="both", expand=True)
         toolbox_data = {
-            "Core": [("PUSH", True), ("DUP", False),("CALL", True),("RET", False)],
-            "Control Flow": [("LABEL", True), ("JMP", True), ("JZ", True)],
-            "Math & Logic": [("ADD", False), ("SUB", False), ("MUL", False), ("DIV", False), ("MOD", False), ("CMP_EQ", False),("CMP_LT", False),("CMP_GT", False),("AND", False),("OR", False),("NOT", False),("RAND", False),("RAND_SEED", False)],
-            "Hardware I/O": [("READ_GPIO", False),("WRITE_GPIO", False)],
-            "UI & Debug": [("DEBUG_PRINT", False), ("PRINT_STR", False),("CLS", False), ("DRAW_PIXEL", False),("DRAW_TEXT", False),("DRAW_NUM", False), ("DRAW_RECT", False), ("FLIP", False)],
-            "System": [("HALT", False),("STORE", True),("LOAD", True),("PEEK", False), ("POKE", False),("DELAY", False),("FS_SAVE", False),("FS_LOAD", False)]
-        }
+			"Core": [("PUSH", True), ("DUP", False),("CALL", True),("RET", False)],
+			"Control Flow": [("LABEL", True), ("JMP", True), ("JZ", True)],
+			"Math & Logic": [("ADD", False), ("SUB", False), ("MUL", False), ("DIV", False), ("MOD", False), ("CMP_EQ", False),("CMP_LT", False),("CMP_GT", False),("AND", False),("OR", False),("NOT", False),("RAND", False),("RAND_SEED", False)],
+			"Hardware I/O": [("READ_GPIO", False),("WRITE_GPIO", False)],
+			"UI & Debug": [("DEBUG_PRINT", False), ("PRINT_STR", False),("CLS", False), ("DRAW_PIXEL", False),("DRAW_BMP", False),("DRAW_TEXT", False),("DRAW_NUM", False), ("DRAW_RECT", False), ("FLIP", False)],
+			"System": [("HALT", False),("STORE", True),("LOAD", True),("PEEK", False), ("POKE", False),("DELAY", False),("FS_SAVE", False),("FS_LOAD", False)]
+		}
+        
+        
+        
+        
         for category, ops in toolbox_data.items():
             tk.Label(self.t_frame, text=category, bg="#333", fg="#AAA", font=("Arial", 10, "bold"), pady=5).pack(anchor="w", padx=10)
             for opcode, has_input in ops:
