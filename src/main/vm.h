@@ -261,16 +261,11 @@ public:
           int addr = pop();
 
           if (!is_running) break;
-
-          // 1. Extract the filename string from VM memory
-          String filename = "/"; // SD library expects root slash
+          String filename = "/"; 
           while (addr >= 0 && addr < memory.size() && memory[addr] != 0x00) {
             filename += (char)memory[addr];
             addr++;
           }
-
-          // 2. Tell LovyanGFX to draw the BMP from the SD Card
-          // Note: 'sprite' is your LovyanGFX buffer, 'SD' is your file system
           sprite.drawBmpFile(SD, filename.c_str(), x, y);
           break;
         }
